@@ -1,19 +1,25 @@
-from tkinter import *
-from tkinter import ttk
-from screeninfo import get_monitors
+import sys
 
-for m in get_monitors():
-    print(str(m))
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QMainWindow, QApplication, QLabel
 
+app = QApplication(sys.argv)
 
-root = Tk()
-root.title("DvD")
+window = QMainWindow()
 
-mainframe = ttk.Frame(root, padding="10 10 10 10")
-mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
-root.columnconfigure(0, weight=1)
-root.rowconfigure(0, weight=1)
+window.setAttribute(Qt.WA_TranslucentBackground, True)
+window.setAttribute(Qt.WA_NoSystemBackground, True)
+window.setWindowFlags(Qt.FramelessWindowHint)
 
-root.geometry('+200+100')
+label = QLabel(window)
+pixmap = QPixmap('image.png')
+label.setPixmap(pixmap)
+label.setGeometry(0, 0, pixmap.width(), pixmap.height())
 
-root.mainloop()
+window.label = label
+
+window.resize(pixmap.width(),pixmap.height())
+
+window.show()
+sys.exit(app.exec_())
