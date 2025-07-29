@@ -25,7 +25,7 @@ class MainWindow(QMainWindow):
 
     def move(self):
         screen = QApplication.desktop().availableGeometry()
-        startdir = random.randrange(1, 360)
+        startdir = 45
 
         x, y = self.x, self.y
 
