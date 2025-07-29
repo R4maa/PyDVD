@@ -1,6 +1,6 @@
 import sys
 
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QMainWindow, QApplication, QLabel
 
@@ -13,7 +13,7 @@ window.setAttribute(Qt.WA_NoSystemBackground, True)
 window.setWindowFlags(Qt.FramelessWindowHint)
 
 label = QLabel(window)
-pixmap = QPixmap('image.png')
+pixmap = QPixmap('logo.png').scaled(300,300, aspectRatioMode=Qt.KeepAspectRatio)
 label.setPixmap(pixmap)
 label.setGeometry(0, 0, pixmap.width(), pixmap.height())
 
