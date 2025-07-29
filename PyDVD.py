@@ -29,24 +29,11 @@ class MainWindow(QMainWindow):
 
         x, y = self.x, self.y
 
+def main():
+    app = QApplication(sys.argv)
+    mainWindow = MainWindow()
+    mainWindow.show()
+    sys.exit(app.exec_())
 
-# init main application 
-app = QApplication(sys.argv)
-
-window = QMainWindow()  # widget of main service
-
-window.setAttribute(Qt.WA_TranslucentBackground, True)
-window.setAttribute(Qt.WA_NoSystemBackground, True)
-window.setWindowFlags(Qt.FramelessWindowHint)
-
-label = QLabel(window)
-pixmap = QPixmap('logo.png').scaled(300,300, aspectRatioMode=Qt.KeepAspectRatio) # scales image to 300 px while keeping aspect ratio
-label.setPixmap(pixmap)
-label.setGeometry(0, 0, pixmap.width(), pixmap.height())
-
-window.label = label
-
-window.resize(pixmap.width(),pixmap.height())
-
-window.show()
-app.exec()
+if __name__ == '__main__':
+    main()
