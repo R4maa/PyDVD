@@ -1,4 +1,4 @@
-import sys
+import sys, random, glob
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QMainWindow, QApplication, QLabel
@@ -39,13 +39,26 @@ class MainWindow(QMainWindow):
         if new_x <= 0 or new_x + self.width() >= screen.width():
             self.x_speed *= -1
             new_x = max(0, min(new_x, screen.width() - self.width()))   #check clipping
+            self.colorChange()
 
         # Bounce vertically
         if new_y <= 0 or new_y + self.height() >= screen.height():
             self.y_speed *= -1
             new_y = max(0, min(new_y, screen.height() - self.height())) #check clipping
+            self.colorChange()
 
         self.move(new_x, new_y)
+
+    def colorChange(self):
+        images = glob.glob("./logoColors/*.png")
+        random_image = random.choice(images)
+
+        newPixmap = QPixmap(random_image).scaled(
+            300, 300, 
+            aspectRatioMode=Qt.KeepAspectRatio
+        )
+        
+        self.label.setPixmap(newPixmap) # change image
 
 def main():
     app = QApplication(sys.argv)
